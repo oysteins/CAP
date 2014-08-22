@@ -1,101 +1,85 @@
-#############################################################################
-##  
-##  Demo PackageInfo.g for the GitHubPagesForGAP
-##
-
 SetPackageInfo( rec(
 
-PackageName := "GitHubPagesForGAP",
+PackageName := "CategoriesForHomalg",
 
-Subtitle := "A GitHubPages generator for GAP packages",
-Version := "0.1",
-Date := "21/03/2014", # dd/mm/yyyy format
+Subtitle := "TODO",
+
+Version := Maximum( [
+  "2014.05.08", ## Sebas' version
+  ## this line prevents merge conflicts
+  "2014.03.11", ## Sepp's version
+] ),
+
+Date := "12/12/2013",
 
 Persons := [
   rec(
-    LastName      := "Horn",
-    FirstNames    := "Max",
-    IsAuthor      := true,
-    IsMaintainer  := true,
-    Email         := "max.horn@math.uni-giessen.de",
-    WWWHome       := "http://www.quendi.de/math",
-    PostalAddress := Concatenation(
-                       "AG Algebra\n",
-                       "Mathematisches Institut\n",
-                       "Justus-Liebig-Universit‰t Gieﬂen\n",
-                       "Arndtstraﬂe 2\n",
-                       "35392 Gieﬂen\n",
-                       "Germany" ),
-    Place         := "Gieﬂen",
-    Institution   := "Justus-Liebig-Universit‰t Gieﬂen"
+    IsAuthor := true,
+    IsMaintainer := true,
+    FirstNames := "Sebastian",
+    LastName := "Gutsche",
+    WWWHome := "http://wwwb.math.rwth-aachen.de/~gutsche",
+    Email := "gutsche@mathematik.uni-kl.de",
+    PostalAddress := "TODO",
+    Place := "Kaiserslautern",
+    Institution := "TU Kaiserslautern",
   ),
-
   rec(
-    LastName      := "Thor",
-    FirstNames    := "A. U.",
-    IsAuthor      := true,
-    IsMaintainer  := false,
-    #Email         := "author@example.com",
-  ),
-
-  rec(
-    LastName      := "Itor",
-    FirstNames    := "Jan",
-    IsAuthor      := false,
-    IsMaintainer  := true,
-    #Email         := "janitor@example.com",
-  ),
+    IsAuthor := true,
+    IsMaintainer := true,
+    FirstNames := "Sebastian",
+    LastName := "Posur",
+    WWWHome := "http://wwwb.math.rwth-aachen.de/Mitarbeiter/posur.php",
+    Email := "sposur@momo.math.rwth-aachen.de",
+    PostalAddress := Concatenation( [
+      "Lehrstuhl B f√ºr Mathematik RWTH - Aachen\n",
+      "Templergraben 64\n",
+      "52062 Aachen\n",
+      "Germany" ] ),
+    Place := "Aachen",
+    Institution := "Rheinisch-Westf√§lische Technische Hochschule Aachen",
+   ),
 ],
 
-Status := "other",
+Status := "dev",
 
-# The following are not strictly necessary in your own PackageInfo.g
-# (in the sense that update.g only looks at the usual fields
-# like PackageWWWHome, ArchiveURL etc.). But they are convenient
-# if you use exactly the scheme for your package website that we propose.
-GithubUser := "fingolfin",
-GithubRepository := ~.PackageName,
-GithubWWW := Concatenation("https://github.com/", ~.GithubUser, "/", ~.GithubRepository),
+PackageWWWHome := "http://www.TODO.INSERT.WEBPAGE.HERE/",
+#PackageWWWHome := "http://github.com/username/CategoriesForHomalg/",
 
-PackageWWWHome := Concatenation("http://", ~.GithubUser, ".github.io/", ~.GithubRepository, "/"),
+ArchiveFormats := ".tar.gz",
+
+ArchiveURL     := Concatenation( ~.PackageWWWHome, "CategoriesForHomalg-", ~.Version ),
 README_URL     := Concatenation( ~.PackageWWWHome, "README" ),
 PackageInfoURL := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-# The following assumes you are using the Github releases system. If not, adjust
-# it accordingly.
-ArchiveURL     := Concatenation(~.GithubWWW,
-                    "/releases/download/v", ~.Version, "/",
-                    ~.GithubRepository, "-", ~.Version),
 
-ArchiveFormats := ".tar.gz .tar.bz2",
-
-AbstractHTML := 
-  "This is a pseudo package that contains no actual\
-  <span class=\"pkgname\">GAP</span> code. Instead, it is a template for other\
-  GAP packages that allows to quickly setup GitHub pages.",
+AbstractHTML   :=  "",
 
 PackageDoc := rec(
-  BookName  := "GitHubPagesForGAP",
+  BookName  := "CategoriesForHomalg",
   ArchiveURLSubset := ["doc"],
   HTMLStart := "doc/chap0.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "A GitHubPages generator for GAP packages",
+  LongTitle := "TODO",
 ),
 
-# The following dependencies are fake and for testing / demo purposes
 Dependencies := rec(
-  GAP := ">=4.5.5",
-  NeededOtherPackages := [
-    ["GAPDoc", ">= 1.2"],
-    ["IO", ">= 4.1"],
+  GAP := ">= 4.6",
+  NeededOtherPackages := [ [ "AutoDoc", ">= 2014.06.26" ],
+                           [ "ToolsForHomalg", ">= 2014.05.08" ],
   ],
-  SuggestedOtherPackages := [["orb", ">= 4.2"]],
+  SuggestedOtherPackages := [ ],
   ExternalConditions := []
+                      
 ),
 
-AvailabilityTest := ReturnTrue,
+AvailabilityTest := function()
+        return true;
+    end,
 
-Keywords := ["GitHub pages", "GAP"]
+Autoload := false,
+
+#Keywords := [ " TODO" ],
 
 ));
 
