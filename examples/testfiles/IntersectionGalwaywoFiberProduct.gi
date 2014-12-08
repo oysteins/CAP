@@ -14,6 +14,8 @@ alpha1 := PresentationMorphism( F, HomalgMatrix( "[ [ x ] ]", R ), F );
 
 alpha2 := PresentationMorphism( F, HomalgMatrix( "[ [ y ] ]", R ), F );
 
+F := InDeductiveSystem( F );
+
 alpha1 := InDeductiveSystem( alpha1 );
 
 alpha2 := InDeductiveSystem( alpha2 );

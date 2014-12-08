@@ -36,10 +36,11 @@ SetIsAbelianCategory( HomalgCategory( alpha1 ), true );
 
 c := SnakeLemmaConnectingHomomorphism( alpha2, gamma1, gamma2, gamma3, beta1 );
 
-PrintHistory( c );
-
 c_eval := Eval( c );
 
 cl := ApplyFunctor( FunctorLessGeneratorsLeft( ZZ ), c_eval );
+
+
+PrintHistory( c );
 
 Display( cl );
