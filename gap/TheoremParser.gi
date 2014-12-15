@@ -140,7 +140,7 @@ BindGlobal( "SPLIT_KOMMAS_NOT_IN_BRACKETS",
     
     for i in [ 1 .. Length( positions ) - 1 ] do
         
-        Add( return_list, string{[ positions[ i ] .. positions[ i + ] ]} );
+        Add( return_list, string{[ positions[ i ] .. positions[ i + 1 ] ]} );
         
     od;
     
@@ -193,39 +193,39 @@ BindGlobal( "FIND_LISTING",
     
 end );
 
-InstallGlobalFunction( "SPLIT_SINGLE_PART_RECURSIVE",
-                       
-  function( single_part )
-    local 
-    
-
-BindGlobal( "SPLIT_SINGLE_PART",
-            
-  function( part )
-    local return_rec
-    
-    return_rec := rec( );
-    
-    part := SplitString( part, ":" );
-    
-    Perform( part, NormalizedWhitespace );
-    
-    if Length( part ) = 2 then
-        
-        return_rec!.bound_variables := part[ 1 ];
-        
-        part := part[ 2 ];
-        
-    else
-        
-        return_rec!.bound_variables := fail;
-        
-        part := part[ 1 ];
-        
-    fi;
-    
-    
-    
+# InstallGlobalFunction( "SPLIT_SINGLE_PART_RECURSIVE",
+#                        
+#   function( single_part )
+#     local 
+#     
+# 
+# BindGlobal( "SPLIT_SINGLE_PART",
+#             
+#   function( part )
+#     local return_rec
+#     
+#     return_rec := rec( );
+#     
+#     part := SplitString( part, ":" );
+#     
+#     Perform( part, NormalizedWhitespace );
+#     
+#     if Length( part ) = 2 then
+#         
+#         return_rec!.bound_variables := part[ 1 ];
+#         
+#         part := part[ 2 ];
+#         
+#     else
+#         
+#         return_rec!.bound_variables := fail;
+#         
+#         part := part[ 1 ];
+#         
+#     fi;
+#     
+#     
+#     
 
 BindGlobal( "SANITIZE_ARGUMENT_LIST",
             
