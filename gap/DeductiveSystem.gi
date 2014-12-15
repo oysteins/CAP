@@ -743,7 +743,7 @@ InstallMethod( DeductiveSystemObject,
 #     resolved_history := RESOLVE_HISTORY( argument_list );
     
     ObjectifyWithAttributes( deductive_object, TheTypeOfDeductiveSystemObject,
-                             History, rec( command := func, arguments := resolved_history ) );
+                             History, rec( command := func, arguments := argument_list ) );
     
     INSTALL_TODO_FOR_LOGICAL_THEOREMS( func, argument_list, deductive_object );
     
@@ -824,7 +824,7 @@ InstallMethod( DeductiveSystemMorphism,
 #     resolved_history := RESOLVE_HISTORY( argument_list );
     
     ObjectifyWithAttributes( deductive_morphism, TheTypeOfDeductiveSystemMorphism,
-                             History, rec( command :=func, arguments := resolved_history ),
+                             History, rec( command :=func, arguments := argument_list ),
                              Source, source,
                              Range, range );
     
@@ -885,13 +885,19 @@ InstallGlobalFunction( RECURSIVE_EVAL,
     
     if IsDeductiveSystemCell( list ) then
         
-        if not IsBound( list!.eval ) or not IsBoundElmWPObj( list!.eval, 1 ) then
+        if HasEvaluation( list ) then
             
-            Error( "cannot evaluate object since leaves in history do not have evaluation.\n If you continue from here, your results will be wrong." );
+            return Evaluation( list );
             
-       fi;
+        fi;
         
-        return Evaluation( list );
+        if History( list ) = list then
+            
+            Error( "unevaluated leave cell, cannot evaluate object" );
+            
+        fi;
+        
+        return RECURSIVE_EVAL( History( list ) );
         
     elif IsRecord( list ) then
         
