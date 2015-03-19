@@ -403,13 +403,13 @@ InstallGlobalFunction( DeclareFamilyProperty,
     
     if not IsBound( CATEGORIES_FAMILY_PROPERTIES.( family ) ) then
         
-        CATEGORIES_FAMILY_PROPERTIES.( family ) := rec( );
+        CATEGORIES_FAMILY_PROPERTIES.( family ) := AtomicRecord( rec( ) );
         
     fi;
     
     if not IsBound( CATEGORIES_FAMILY_PROPERTIES.( family ).( cell_type ) ) then
         
-        CATEGORIES_FAMILY_PROPERTIES.( family ).( cell_type ) := [ ];
+        CATEGORIES_FAMILY_PROPERTIES.( family ).( cell_type ) := AtomicList( [ ] );
         
     fi;
     
@@ -421,7 +421,9 @@ InstallGlobalFunction( DeclareFamilyProperty,
         
     fi;
     
-    Add( CATEGORIES_FAMILY_PROPERTIES.( family ).( cell_type ), [ name, reinstall ] );
+    MakeImmutable( name );
+    
+    Add( CATEGORIES_FAMILY_PROPERTIES.( family ).( cell_type ), AtomicList( [ name, reinstall ] ) );
     
     DeclareProperty( name, filter );
     

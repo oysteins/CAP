@@ -221,7 +221,7 @@ InstallGlobalFunction( "CREATE_HOMALG_CATEGORY_OBJECT",
     
     CallFuncList( ObjectifyWithAttributes, flatted_attribute_list );
     
-    obj_rec!.caches := rec( );
+    obj_rec!.caches := AtomicRecord( rec( ) );
     
     return obj_rec;
     
@@ -232,7 +232,7 @@ InstallMethod( TheoremRecord,
                
   function( category )
     
-    return rec( );
+    return AtomicRecord( rec( ) );
     
 end );
 

@@ -282,13 +282,15 @@ InstallGlobalFunction( ADD_THEOREM_TO_CATEGORY,
   function( category, implication_record )
     local theorem_record, name;
     
+    MakeImmutable( implication_record );
+    
     theorem_record := TheoremRecord( category );
     
     name := implication_record.Function;
     
     if not IsBound( theorem_record.( name ) ) then
         
-        theorem_record.( name ) := [ implication_record ];
+        theorem_record.( name ) := AtomicList( [ implication_record ] );
         
     else
         

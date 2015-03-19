@@ -654,7 +654,7 @@ InstallGlobalFunction( INSTALL_PROPERTIES_FOR_DEDUCTIVE_SYSTEM,
     
     families := category!.families;
     
-    deductive_category!.properties_to_propagate := rec( cell := [ ], object := [ ], morphism := [ ], twocell := [ ] );
+    deductive_category!.properties_to_propagate := AtomicRecord( rec( cell := AtomicList( [ ] ), object := AtomicList( [ ] ), morphism := AtomicList( [ ] ), twocell := AtomicList( [ ] ) ) );
     
     for family in families do
         
@@ -721,7 +721,7 @@ InstallMethod( InDeductiveSystem,
     
     Add( deductive_system, deductive_object );
     
-    for property in Concatenation( deductive_system!.properties_to_propagate.cell, deductive_system!.properties_to_propagate.object ) do
+    for property in Concatenation( FromAtomicList( deductive_system!.properties_to_propagate.cell ), FromAtomicList( deductive_system!.properties_to_propagate.object ) ) do
         
         AddToToDoList( ToDoListEntryForEqualAttributes( object, property, deductive_object, property ) );
         
@@ -802,7 +802,7 @@ InstallMethod( InDeductiveSystem,
     
     INSTALL_TODO_FOR_LOGICAL_THEOREMS( "Range", [ deductive_morphism ], range );
     
-    for property in Concatenation( deductive_system!.properties_to_propagate.cell, deductive_system!.properties_to_propagate.morphism ) do
+    for property in Concatenation( FromAtomicList( deductive_system!.properties_to_propagate.cell ), FromAtomicList( deductive_system!.properties_to_propagate.morphism ) ) do
         
         AddToToDoList( ToDoListEntryForEqualAttributes( morphism, property, deductive_morphism, property ) );
         
